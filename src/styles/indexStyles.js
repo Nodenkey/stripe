@@ -79,4 +79,7 @@ export const TierButton = styled.button`
   cursor: pointer;
   border-radius: 8px;
   border: none;
+  &:disabled {
+    cursor: not-allowed;
+  }
 `;

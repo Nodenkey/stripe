@@ -1,7 +1,28 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Divider, TierButton} from "../styles/indexStyles";
+import getStripe from "../utils/stripejs";
 
-const PriceCard = ({type, price, description, packages, color, buttonBackground}) => {
+const PriceCard = ({type, price, description, packages, color, buttonBackground, priceId}) => {
+    const [loading, setLoading] = useState(false)
+    console.log(priceId)
+
+
+    const handleBuy = async event => {
+        event.preventDefault()
+        setLoading(true)
+        const stripe = await getStripe()
+        const { error } = await stripe.redirectToCheckout({
+            lineItems: [{ price: priceId, quantity: 1 }],
+            mode: "subscription",
+            successUrl: `${window.location.origin}/page-2/`,
+            cancelUrl: `${window.location.origin}/page-2`,
+        })
+        if (error) {
+            console.warn("Error:", error)
+            setLoading(false)
+        }
+    }
+
     return (
         <div>
             <p>{type}</p>
@@ -9,12 +30,12 @@ const PriceCard = ({type, price, description, packages, color, buttonBackground}
             <p className='description'>{description}</p>
             {
                 packages.map((pack, index) =>
-                    <>
-                        <p key={index}>{pack}</p>
+                    <div key={index}>
+                        <p>{pack}</p>
                         <Divider/>
-                </>)
+                </div>)
             }
-            <TierButton color={color} background={buttonBackground}>Get started</TierButton>
+            <TierButton color={color} background={buttonBackground} onClick={handleBuy} disabled={loading} >Get started</TierButton>
         </div>
     );
 };

@@ -9,7 +9,8 @@ export const tiers = [
             'Mood board'
         ],
         color: 'white',
-        buttonBackground: '#cd7f32'
+        buttonBackground: '#cd7f32',
+        priceId: process.env.GATSBY_STRIPE_BRONZE
     },
     {
         type: 'Gold',
@@ -22,7 +23,8 @@ export const tiers = [
             'Mood board'
         ],
         color: 'black',
-        buttonBackground: '#FFD700'
+        buttonBackground: '#FFD700',
+        priceId: process.env.GATSBY_STRIPE_GOLD
     },
     {
         type: 'Platinum',
@@ -36,6 +38,7 @@ export const tiers = [
             'Mood board'
         ],
         color: 'black',
-        buttonBackground: '#e5e4e2'
+        buttonBackground: '#e5e4e2',
+        priceId: process.env.GATSBY_STRIPE_PLATINUM
     },
 ]

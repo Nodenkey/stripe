@@ -20,7 +20,7 @@ const IndexPage = () => {
                             tiers.map((tier, index) =>
                                 <PriceCard key={index} type={tier.type} price={tier.price}
                                            description={tier.description} packages={tier.package} color={tier.color}
-                                           buttonBackground={tier.buttonBackground}/>
+                                           buttonBackground={tier.buttonBackground} priceId={tier.priceId}/>
                             )
                         }
                     </Grid>
