@@ -13,9 +13,10 @@ const PriceCard = ({type, price, description, packages, color, buttonBackground,
         const stripe = await getStripe()
         const { error } = await stripe.redirectToCheckout({
             lineItems: [{ price: priceId, quantity: 1 }],
+            customerEmail: 'nodenkey@gmail.com',
             mode: "subscription",
             successUrl: `${window.location.origin}/page-2/`,
-            cancelUrl: `${window.location.origin}/page-2`,
+            cancelUrl: `${window.location.origin}/`,
         })
         if (error) {
             console.warn("Error:", error)
