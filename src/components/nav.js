@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {NavLink, NavWrapper} from "../styles/navStyles";
 import {AuthContext} from "../context/auth";
 import firebase from "gatsby-plugin-firebase";
-import {navigate} from "gatsby";
+import { window } from 'browser-monads';
 
 const Nav = () => {
         //bring context
@@ -11,7 +11,7 @@ const Nav = () => {
         //logout
         const handleLogout = async () => {
             await firebase.auth().signOut();
-            typeof window !== undefined && navigate('/login')
+            await window.location = '/login'
         }
 
         return (

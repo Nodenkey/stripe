@@ -2,13 +2,13 @@ import React, {useContext} from 'react';
 import Layout from "../components/layout";
 import {IndexContainer, IndexMain} from "../styles/indexStyles";
 import {AuthContext} from "../context/auth";
-import {navigate} from "gatsby";
+import {window} from "browser-monads";
 
 const Goodies = () => {
     //bring context
     const {user} = useContext(AuthContext);
     if(!user) {
-        typeof window !== undefined && navigate('/login')
+        window.location = '/login'
         return null
     }
     return (

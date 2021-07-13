@@ -4,7 +4,7 @@ import {IndexContainer, IndexMain, TierButton} from "../styles/indexStyles";
 import {Form, Input, LoginContainer} from "../styles/loginStyles";
 import firebase from 'gatsby-plugin-firebase';
 import {AuthContext} from "../context/auth";
-import {navigate} from "gatsby";
+import {window} from "browser-monads";
 
 const Register = () => {
     const [data, setData] = useState({
@@ -27,7 +27,7 @@ const Register = () => {
         try {
             const result = await firebase.auth().createUserWithEmailAndPassword(data.registerEmail, data.registerPassword)
             setUser(result)
-            await typeof window !== undefined && navigate('/login')
+            await window.location = '/login'
 
         }catch(err) {
             setData({...data, error: err.message})
