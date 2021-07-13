@@ -10,9 +10,14 @@ const AuthProvider = ({children}) => {
         firebase.auth().onAuthStateChanged(user => setUser(user))
     }, [])
 
-    return(
-        <AuthContext.Provider value={{user, setUser}}>{children}</AuthContext.Provider>
+    return (
+        <AuthContext.Provider value={{user, setUser}}>
+            {
+                user !== undefined &&
+                children
+            }
+        </AuthContext.Provider>
     )
 }
 
-export  default AuthProvider
+export default AuthProvider

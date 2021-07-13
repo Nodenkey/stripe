@@ -2,13 +2,17 @@ import React, {useContext} from 'react';
 import Layout from "../components/layout";
 import {IndexContainer, IndexMain} from "../styles/indexStyles";
 import {AuthContext} from "../context/auth";
-import {window} from "browser-monads";
+import {useChangeLocation} from "../hooks/changeLocation";
 
 const Goodies = () => {
     //bring context
     const {user} = useContext(AuthContext);
+    const {redirect} = useChangeLocation();
+
+    console.log(user);
+
     if(!user) {
-        window.location = '/login'
+        redirect('/login')
         return null
     }
     return (

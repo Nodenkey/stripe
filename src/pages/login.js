@@ -4,7 +4,7 @@ import {IndexContainer, IndexMain, TierButton} from "../styles/indexStyles";
 import {Form, Input, LoginContainer} from "../styles/loginStyles";
 import firebase from "gatsby-plugin-firebase";
 import {AuthContext} from "../context/auth";
-import {window} from "browser-monads";
+import {useChangeLocation} from "../hooks/changeLocation";
 
 const Login = () => {
     const [data, setData] = useState({
@@ -15,6 +15,8 @@ const Login = () => {
 
     //bring context
     const {setUser} = useContext(AuthContext);
+
+    const {redirect} = useChangeLocation();
 
     const handleChange = e => {
         const {name, value} = e.target;
@@ -27,7 +29,7 @@ const Login = () => {
         try {
             const result = await firebase.auth().signInWithEmailAndPassword(data.loginEmail, data.loginPassword)
             setUser(result)
-            await window.location = '/login'
+            await redirect('/goodies')
 
         }catch (err) {
             setData({...data, error: err.message})

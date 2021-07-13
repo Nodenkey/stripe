@@ -3,6 +3,7 @@ import {GlobalStyle} from "../styles/appGlobal";
 import Nav from "./nav";
 
 const Layout = ({children}) => {
+
     return (
         <div>
             <GlobalStyle/>
