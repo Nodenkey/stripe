@@ -4,7 +4,6 @@ import getStripe from "../utils/stripejs";
 
 const PriceCard = ({type, price, description, packages, color, buttonBackground, priceId}) => {
     const [loading, setLoading] = useState(false)
-    console.log(priceId)
 
 
     const handleBuy = async event => {
