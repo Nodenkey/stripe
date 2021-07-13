@@ -27,7 +27,8 @@ const Login = () => {
         try {
             const result = await firebase.auth().signInWithEmailAndPassword(data.loginEmail, data.loginPassword)
             setUser(result)
-            await navigate('/goodies')
+            await typeof window !== undefined && navigate('/login')
+
         }catch (err) {
             setData({...data, error: err.message})
         }

@@ -27,7 +27,8 @@ const Register = () => {
         try {
             const result = await firebase.auth().createUserWithEmailAndPassword(data.registerEmail, data.registerPassword)
             setUser(result)
-            await navigate('/goodies')
+            await typeof window !== undefined && navigate('/login')
+
         }catch(err) {
             setData({...data, error: err.message})
         }

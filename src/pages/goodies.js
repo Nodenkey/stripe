@@ -8,7 +8,7 @@ const Goodies = () => {
     //bring context
     const {user} = useContext(AuthContext);
     if(!user) {
-        navigate('/login')
+        typeof window !== undefined && navigate('/login')
         return null
     }
     return (
